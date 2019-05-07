@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Teja",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "file-system": "^2.2.2",
+    "fs": "0.0.1-security",
+    "fs-extra": "^7.0.1",
+    "hbs": "^4.0.3",
+    "mkdirp": "^0.5.1",
+    "mkpath": "^1.0.0",
+    "mongoose": "^5.5.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "serve-favicon": "^2.5.0",
+    "zip-dir": "^1.0.2",
+    "zip-folder": "^1.0.0"
+  }
+}
