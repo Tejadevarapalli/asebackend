@@ -29,5 +29,6 @@ app.use(function(req, res, next) {
 });
 app.use('/file',fileRoutes);
 app.use('/', appRoutes);
-app.listen(3000);
+const port=process.env.PORT||3000
+app.listen(port,() => console.log('server started on port', port));
 
