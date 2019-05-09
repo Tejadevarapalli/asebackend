@@ -10,7 +10,6 @@ var fs1=require('fs');
 var Archiver=require('archiver');
  var store = multer.diskStorage({
      destination: function(req,file,cb){
- console.log(Dir);
          cb(null,path.resolve(__dirname, './upload/'));
      },
      filename:function(req,file,cb){
@@ -22,13 +21,12 @@ var upload = multer({storage: store}).single('file');
 
 _router.post('/upload',function(req,res){
          upload(req, res, function (err) {
-             console.log('checkpoint2');
              if (err) {
                  return res.status(501).json({error: err});
              }
              // console.log( upload)
              //do all database record saving activity
-             console.log('filename new', req.file.filename);
+
              return res.json({originalname: req.file.originalname, uploadname: req.file.filename});
          });
 });

@@ -21,7 +21,6 @@ router.post('/sendDetails', function (req, res, next) {
     console.log(req.body);
     if(req.body.Projecttitle !==null && req.body.ProjectDescription) {
         modal.create(req.body, function (err, post) {
-            console.log(post);
             if (err) return next(err);
             res.json(post);
         });
@@ -32,9 +31,7 @@ router.post('/sendDetails', function (req, res, next) {
 });
 
 router.post('/comment',function(req,res,next) {
-console.log(req.body);
     comment.create(req.body, function (err, post) {
-        console.log(post);
         if (err) return next(err);
         res.json(post);
     });
@@ -42,11 +39,9 @@ console.log(req.body);
 
 
 router.post('/profileabout',function(req,res,next) {
-    console.log(req.body);
     profile.find({EmailID: req.body.EmailID}, function (err, data) {
         if (data.length <= 0) {
             profile.create(req.body, function (err, post) {
-                console.log(post);
                 if (err) return next(err);
                 res.json(post);
             });
@@ -55,7 +50,6 @@ router.post('/profileabout',function(req,res,next) {
                 if (err) {
                     res.send('error', err);
                 }
-                console.log(output);
                 res.json(output);
             });
         }
@@ -63,13 +57,10 @@ router.post('/profileabout',function(req,res,next) {
 });
 
 router.post('/signupDetails', function (req, res, next) {
-    console.log(req.body);
     signup.find({EmailID: req.body.EmailID}, function (err, data) {
-        console.log(data.length);
         if (data.length <= 0) {
             if (req.body.EmailID !== null && req.body.Password !== null) {
                 signup.create(req.body, function (err, post) {
-                    console.log(post);
                     if (err) return next(err);
                     res.json(post);
                 });
@@ -85,16 +76,13 @@ router.post('/signupDetails', function (req, res, next) {
 
 
  router.post('/mymodelsDetails',function (req ,res){
-     console.log(req.body.id);
      modal.find({User: req.body.id},function(err,data){
-         console.log("user specific data"+data);
          res.json(data);
      });
 });
 
 
  router.post('/commentdetails',function(req,res){
-     console.log(req.body.title);
      comment.find({Project: req.body.title},function(err,data){
          res.json(data);
      });
@@ -102,24 +90,22 @@ router.post('/signupDetails', function (req, res, next) {
 
 router.get('/modelsDetails',function (req ,res){
     modal.find({},function(err,data){
-        console.log("all the data"+data);
         res.json(data);
     });
 });
 
 router.post('/profiledetails',function(req,res) {
-    console.log(req.body.userid);
     signup.find({EmailID: req.body.userid}, function(err,data) {
-        console.log(data);
+        //console.log(data);
         res.json(data);
     });
 });
 
 
 router.post('/viewDetails',function(req,res){
-    console.log(req.body.title);
+    //console.log(req.body.title);
     modal.find({Projecttitle: req.body.title},function(err,data){
-      console.log(data);
+      //console.log(data);
       res.json(data);
     })
 })
@@ -127,9 +113,9 @@ router.post('/viewDetails',function(req,res){
 
 
 router.post('/signinDetails' ,function(req,res,next) {
-    console.log(req.body);
+    //console.log(req.body);
     signup.find({'EmailID': req.body.EmailID}, function (err, user) {
-        console.log(user);
+      //  console.log(user);
         if (user.length <= 0){
             res.json('no user available register to login');
         }else{
@@ -147,27 +133,27 @@ router.post('/signinDetails' ,function(req,res,next) {
 
 
 router.post('/likecount',function (req ,res){
-    console.log(req.body.element);
+    //console.log(req.body.element);
     modal.find({Projecttitle:req.body.element},function(err,data) {
-        console.log(data[0].Likes);
+      //  console.log(data[0].Likes);
         data[0].Likes+=1;
-        console.log('data',data[0].Likes);
+        //console.log('data',data[0].Likes);
 //       const update=_.assign({'Likes': data[0].Likes})
         modal.update({Projecttitle: req.body.element}, {$set: { Likes: data[0].Likes}}, function (err, output) {
             if(err)
             {
                 res.send('error',err);
             }
-            console.log(output);
+          //  console.log(output);
             res.json(output);
         });
     });
 });
 
 router.post('/Deletemodal',function(req, res) {
-    console.log(req.body.element);
+   // console.log(req.body.element);
     modal.find({Projecttitle: req.body.element}, function (err, data) {
-        console.log(data[0]._id);
+     //   console.log(data[0]._id);
         modal.remove({_id: data[0]._id}).then((output)=>{
 if(output){
     res.json('Modal got deleted');
